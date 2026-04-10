@@ -4,7 +4,7 @@ import Layout from "./pages/Layout"
 import LoginLanding from "./pages/LoginLanding"
 import Dashboard from "./pages/Dashboard"
 import Employees from "./pages/Employees"
-import Attendence from "./pages/Attendence"
+import Attendance from "./pages/Attendance"
 import Leave from "./pages/Leave"
 import Payslips from "./pages/Payslips"
 import Setting from "./pages/Setting"
@@ -24,7 +24,7 @@ const App = () => {
       <Route element={<Layout/>}>
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/employees" element={<Employees/>}/>
-      <Route path="/attendence" element={<Attendence/>}/>
+      <Route path="/attendance" element={<Attendance/>}/>
       <Route path="/leave" element={<Leave/>}/>
       <Route path="/payslips" element={<Payslips/>}/>
       <Route path="/settings" element={<Setting/>}/>
