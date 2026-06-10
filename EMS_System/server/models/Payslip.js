@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const payslipSchema = new mongoose.Schema({
-    employeeld: {
+    employeeId: {
         type: mongoose.Schema.Types.ObjectId, ref:
             "Employee", required: true
     },

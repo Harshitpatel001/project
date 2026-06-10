@@ -6,6 +6,6 @@ const payslipRouter =Router();
 
 payslipRouter.post("/",protect,protectAdmin,createPayslip)
 payslipRouter.get("/",protect,getPayslip)
-payslipRouter.post("/:id",protect,getPayslipById)
+payslipRouter.get("/:id",protect,getPayslipById)
 
 export default payslipRouter;

@@ -1,9 +1,7 @@
-
-//create payslip
-
 import Employee from "../models/Employee.js";
 import Payslip from "../models/Payslip.js";
 
+//create payslip
 //POST /api/payslips
 export const createPayslip = async (req, res) => {
     try {
@@ -13,7 +11,7 @@ export const createPayslip = async (req, res) => {
         }
         const netSalary = Number(basicSalary) + Number(allowances || 0) - Number(deductions || 0);
         const payslip = await Payslip.create({
-            employeeld,
+            employeeId,
             month: Number(month),
             year: Number(year),
             basicSalary: Number(basicSalary),
@@ -37,19 +35,18 @@ export const getPayslip = async (req, res) => {
             const payslips = await Payslip.find().populate("employeeId").
                 sort({ createdAt: -1 });
             const data = payslips.map((p) => {
-                const obj = p.toobject();
+                const obj = p.toObject();
                 return {
                     ...obj,
                     id: obj._id.toString(),
                     employee: obj.employeeId,
-                    employeeld: obj.employeeId?._id?.toString(),
+                    employeeId: obj.employeeId?._id?.toString(),
                 }
             })
             return res.json({ data });
         } else {
             const employee = await Employee.findOne({
-                userId: session.
-                    userId
+                userId: session.userId
             })
             if (!employee) return res.status(404).json({
                 error: "Notfound"

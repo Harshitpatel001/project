@@ -6,7 +6,7 @@ import Employee from "../models/Employee.js";
 export const getProfile = async(req,res)=>{
     try{
         const session =req.session;
-        const employee = await Employee.findOne({userId: session, userId});
+        const employee = await Employee.findOne({userId: session.userId});
 
         if(!employee){
             //Authenticated user is not an employee - return admin profile
@@ -27,7 +27,7 @@ export const getProfile = async(req,res)=>{
 export const updateProfile = async(req,res)=>{
     try{
         const session = req.session;
-        const employee = await Employee.findOne({userId: session, userId})
+        const employee = await Employee.findOne({userId: session.userId})
         if(!employee) return res.status(404).json({error:"Employee not found"});
         if(employee.isDeteted){
             return res.status(403).json({error:"Your account is deactivated. You cannot \
