@@ -19,7 +19,7 @@ const PayslipList = ({ payslips, isAdmin }) => {
                     <tbody>
                         {payslips.length === 0 ? (
                             <tr>
-                                <td colspan={isAdmin ? 5 : 4}
+                                <td colSpan={isAdmin ? 5 : 4}
                                     className="text-center py-12 text-slate-400">
                                     No payslips found
                                 </td>

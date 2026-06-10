@@ -23,7 +23,7 @@ const AttendanceHistory = ({ history }) => {
                     <tbody>
                         {history.length === 0 ? (
                             <tr>
-                                <td colspan={6} className="text-center py-12 text-slate-400">
+                                <td colSpan={6} className="text-center py-12 text-slate-400">
                                     No records found
                                 </td>
                             </tr>

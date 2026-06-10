@@ -44,7 +44,7 @@ export const getDashboard = async (req, res) => {
                                 (), 1),
                             $lt: new Date(today.getFullYear(), today.getMonth() + 1, 1),
                         }
-                    }).
+                    }),
                         LeaveApplication.countDocuments({
                             employeeld: employee._id,
                             status: "PENDING",
