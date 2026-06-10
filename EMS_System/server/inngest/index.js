@@ -45,7 +45,7 @@ const autoCheckOut = inngest.createFunction(
 
             attendance = await Attendance.findById(attendanceId)
             if (!attendance?.checkOut) {
-                attendance.checkOut = new Date(attendance.checkIn).getTime() + 4 * 60 * 60 * 1000;
+                attendance.checkOut = new Date(attendance.checkIn.getTime() + 4 * 60 * 60 * 1000);
                 attendance.workingHours = 4;
                 attendance.dayType = "Half Day";
                 attendance.status = "Late";
@@ -99,10 +99,22 @@ const attendanceReminderCron = inngest.createFunction(
     async ({ step }) => {
         // Step 1: Get today's date range (IST)
         const today = await step.run("get-today-date", () => {
-            const startUTC = new Date(new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" }) + "T00:00:00 +05:30");
+            const now = new Date();
+
+            const startUTC = new Date(Date.UTC(
+                now.getUTCFullYear(),
+                now.getUTCMonth(),
+                now.getUTCDate(),
+                0, 0, 0
+            ));
+
             const endUTC = new Date(startUTC.getTime() + 24 * 60 * 60 * 1000);
-            return { startUTC: startUTC.toISOString(), endUTC: endUTC.toISOString() }
-        })
+
+            return {
+                startUTC: startUTC.toISOString(),
+                endUTC: endUTC.toISOString()
+            };
+        });
 
         // Step 2: Get all active, non-deleted employees
         const activeEmployees = await step.run
